@@ -3,7 +3,7 @@ import Navbar from "~/components/Navbar";
 import { useState } from "react";
 import FileUploader from "~/components/FileUploader";
 import { usePuterStore } from "~/lib/puter";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { generateUUID } from "~/lib/utils";
 import { prepareInstructions } from "constants/index";
@@ -84,7 +84,7 @@ export default function upload() {
     data.feedback = JSON.parse(feedbackText);
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText("Done! Redirecting to results ...");
-    console.log("Resume data:", data);
+    navigate(`/resume/${uuid}`)
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

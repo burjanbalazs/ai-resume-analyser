@@ -7,6 +7,7 @@ interface FileUploaderProps {
 }
 
 export default function FileUploader({ onFileSelect }: FileUploaderProps) {
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0] || null;
@@ -51,6 +52,7 @@ export default function FileUploader({ onFileSelect }: FileUploaderProps) {
               <button
                 className="p-2 cursor-pointer"
                 onClick={(e) => {
+                  e.stopPropagation()
                   onFileSelect?.(null);
                 }}>
                 <img src="/icons/cross.svg" alt="remove" className="w-4 h-4" />
